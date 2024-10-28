@@ -16,5 +16,5 @@ public interface ITaskService {
 
     public List<Task> findAllTasks();
 
-    public void delete(int taskId);
+    public void deleteTaskById(int taskId);
 }

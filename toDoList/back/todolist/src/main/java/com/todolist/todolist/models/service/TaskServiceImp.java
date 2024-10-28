@@ -16,7 +16,7 @@ public class TaskServiceImp implements ITaskService{
     private ITaskDao taskDao;
 
     @Override
-    public void delete(int taskId) {
+    public void deleteTaskById(int taskId) {
         taskDao.deleteById(taskId);
     }
 

@@ -20,8 +20,8 @@ public class UserServiceImp implements IUserService{
     }
 
     @Override
-    public User get(User user) {
-        return userDao.findById(user.getId()).orElse(null);
+    public User findUserById(int id) {
+        return userDao.findById(id).orElse(null);
     }
 
     public List<User> getAllUser() {
@@ -29,13 +29,13 @@ public class UserServiceImp implements IUserService{
     }
 
     @Override
-    public User change(User user) {
+    public User update(User user) {
         return userDao.save(user);
     }
 
     @Override
-    public void delete(User user) {
-        userDao.delete(user);
+    public void deleteUser(int id) {
+        userDao.deleteById(id);
     }
     
 }

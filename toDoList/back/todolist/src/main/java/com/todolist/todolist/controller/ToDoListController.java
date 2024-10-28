@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,31 +39,43 @@ public class ToDoListController {
 		return new MessageDTO(LocalDateTime.now(), "Hola mundo!!");
 	}
 
-	@GetMapping("/all")
+	@GetMapping("/task/all")
 	public List<Task> allTasks() {
 		return taskService.findAllTasks();
 	}
 
-	@GetMapping("/allUsers")
+	@GetMapping("/user/all")
 	public List<User> allUsers() {
 		return userService.getAllUser();
 	}
-	
 
 	@GetMapping("/task/{id}")
 	public Task getTaskById(@PathVariable int id) {
 		return taskService.findByTaskId(id);
 	}
 
-	@PostMapping("/addUser")
-	public User addUser(@RequestBody User user) {		
-		return userService.save(user);
+	@GetMapping("/user/{id}")
+	public User getUserById(@PathVariable int id) {
+		return userService.findUserById(id);
 	}
 
-	@PostMapping("/addTask")
+	@PostMapping("/task/add")
 	public Task addTask(@RequestBody Task task) {
 		return taskService.save(task);
 	}
+
+	@PostMapping("/user/add")
+	public User addUser(@RequestBody User user) {		
+		return userService.save(user);
+	}
 	
-	
+	@DeleteMapping("/task/del/{id}")
+	public void deleteTask(@PathVariable int id) {
+		taskService.deleteTaskById(id);
+	}
+
+	@DeleteMapping("/user/del/{id}")
+	public void deleteUser(@PathVariable int id) {
+		userService.deleteUser(id);
+	}
 }
